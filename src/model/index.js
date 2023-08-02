@@ -10,7 +10,7 @@ export class Model {
   async fetchRecipes() {
     try {
       const recipes = await getRecipes();
-      this.data.recipes = recipes;
+      this.data.recipes = recipes.data.recipes;
     } catch (error) {}
   }
 }
