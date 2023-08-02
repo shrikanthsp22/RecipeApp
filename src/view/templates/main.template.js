@@ -1,4 +1,4 @@
-export const mainTemplate = (data) => `
+export const template = (data) => `
     <div  class="main">
         <div>
             ${data.message}
@@ -20,12 +20,7 @@ export const mainTemplate = (data) => `
         `;
 
 export class MainView {
-  constructor(data) {
-    this.app = document.getElementById("app");
-    this.markup = mainTemplate(data);
-  }
-
-  render(vm) {
-    return this.markup;
+  render(data) {
+    return template(data);
   }
 }

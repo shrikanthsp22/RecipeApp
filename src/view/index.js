@@ -1,12 +1,26 @@
 import { MainView } from "./templates/main.template";
+import { LoadingView } from "./templates/LoadingView";
 
 export class View {
   constructor() {
     this.app = document.getElementById("app");
+    this.registerViews();
   }
 
-  render(data, vm) {
+  async render(data, vm) {
     this.vm = vm;
-    this.app.insertAdjacentHTML("afterbegin", new MainView(data).render());
+
+    this.updateView(this.loader);
+    await this.vm.fetchRecipes();
+    this.updateView(this.mainView, data);
+  }
+
+  updateView(view, data) {
+    this.app.insertAdjacentHTML("afterbegin", view.render(data));
+  }
+
+  registerViews() {
+    this.mainView = new MainView();
+    this.loader = new LoadingView();
   }
 }

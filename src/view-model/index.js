@@ -5,7 +5,11 @@ export class ViewModel {
   }
 
   async init() {
-    await this.model.fetchRecipes();
+    // await this.model.fetchRecipes();
     this.view.render(this.model.data, this);
+  }
+
+  async fetchRecipes() {
+    await this.model.fetchRecipes();
   }
 }
