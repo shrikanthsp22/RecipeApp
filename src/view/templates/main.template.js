@@ -1,3 +1,5 @@
+import { BaseView } from "./BaseView";
+
 export const template = (data) => `
     <div  class="main">
         <div>
@@ -19,8 +21,26 @@ export const template = (data) => `
     </div>
         `;
 
-export class MainView {
+export class MainView extends BaseView {
+  constructor(vm) {
+    super();
+    this.vm = vm;
+    this.observe();
+  }
+
   render(data) {
-    return template(data);
+    // Code cleanup is pending
+    console.log("main template render", data);
+    const markUp = template(data);
+    document.getElementById("app").addEventListener("click", (e) => {
+      // this.vm.deleteAll();
+      console.log("Clicked");
+    });
+    console.log("template", template);
+    this.app.insertAdjacentHTML("afterbegin", markUp);
+  }
+
+  observe() {
+    this.vm.tasksObservable.subscribe(this.render.bind(this));
   }
 }

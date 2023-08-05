@@ -4,23 +4,23 @@ import { LoadingView } from "./templates/LoadingView";
 export class View {
   constructor() {
     this.app = document.getElementById("app");
-    this.registerViews();
+    this.vm = undefined;
   }
 
-  async render(data, vm) {
+  async render(vm) {
+    console.log("vm", vm);
     this.vm = vm;
-
+    this.registerViews();
     this.updateView(this.loader);
     await this.vm.fetchRecipes();
-    this.updateView(this.mainView, data);
   }
 
-  updateView(view, data) {
-    this.app.insertAdjacentHTML("afterbegin", view.render(data));
+  updateView(view, data, vm) {
+    this.app.insertAdjacentHTML("afterbegin", view.render(data, vm));
   }
 
   registerViews() {
-    this.mainView = new MainView();
+    this.mainView = new MainView(this.vm);
     this.loader = new LoadingView();
   }
 }
