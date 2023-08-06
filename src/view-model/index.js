@@ -17,7 +17,7 @@ export class ViewModel {
   }
 
   deleteAll() {
-    this.model.recipes = [];
+    this.model.data.recipes = [];
     this.tasksObservable.notify(this.model.data);
   }
 }

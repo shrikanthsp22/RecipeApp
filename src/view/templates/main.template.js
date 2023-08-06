@@ -1,7 +1,7 @@
 import { BaseView } from "./BaseView";
 
 export const template = (data) => `
-    <div  class="main">
+    <div id="main" class="main">
         <div>
             ${data.message}
         </div>
@@ -29,15 +29,13 @@ export class MainView extends BaseView {
   }
 
   render(data) {
-    // Code cleanup is pending
-    console.log("main template render", data);
     const markUp = template(data);
+    // Refactor this to use the BaseView class
     document.getElementById("app").addEventListener("click", (e) => {
-      // this.vm.deleteAll();
+      this.vm.deleteAll();
       console.log("Clicked");
     });
-    console.log("template", template);
-    this.app.insertAdjacentHTML("afterbegin", markUp);
+    this.renderBase(markUp);
   }
 
   observe() {
