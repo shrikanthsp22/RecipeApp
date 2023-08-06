@@ -4,20 +4,22 @@ export class ViewModel {
   constructor(model, view) {
     this.model = model;
     this.view = view;
-    this.tasksObservable = new Observable();
+    // this.tasksObservable = new Observable();
   }
 
   async init() {
-    this.view.render(this);
+    this.view.init(this);
+    this.model.init(this.view.mainView.render.bind(this.view.mainView));
+    this.fetchRecipes();
   }
 
   async fetchRecipes() {
     await this.model.fetchRecipes();
-    this.tasksObservable.notify(this.model.data);
+    // this.tasksObservable.notify(this.model.data);
   }
 
   deleteAll() {
     this.model.data.recipes = [];
-    this.tasksObservable.notify(this.model.data);
+    // this.tasksObservable.notify(this.model.data);
   }
 }

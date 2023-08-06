@@ -7,12 +7,13 @@ export class View {
     this.vm = undefined;
   }
 
-  async render(vm) {
-    console.log("vm", vm);
+  init(vm) {
     this.vm = vm;
     this.registerViews();
+  }
+
+  render(vm) {
     this.updateView(this.loader);
-    await this.vm.fetchRecipes();
   }
 
   updateView(view, data, vm) {
