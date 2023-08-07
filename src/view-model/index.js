@@ -19,7 +19,7 @@ export class ViewModel {
   }
 
   deleteAll() {
-    this.model.data.recipes = [];
+    this.model.state.state.recipes = [];
     // this.tasksObservable.notify(this.model.data);
   }
 }

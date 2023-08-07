@@ -25,7 +25,7 @@ export class MainView extends BaseView {
   constructor(vm) {
     super();
     this.vm = vm;
-    this.observe();
+    // this.observe();
   }
 
   render(data) {
