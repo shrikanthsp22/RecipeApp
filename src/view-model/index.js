@@ -14,6 +14,7 @@ export class ViewModel {
   }
 
   async fetchRecipes() {
+    // Call the fetch recipes method from the model
     await this.model.fetchRecipes();
     // this.tasksObservable.notify(this.model.data);
   }
